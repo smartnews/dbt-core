@@ -1541,6 +1541,14 @@ class UnitTestContext(ModelContext):
         else:
             return super().env_var(var, default)
 
+    @contextproperty()
+    def this(self) -> Optional[str]:
+        if self.model.this:
+            # TODO: RuntimeRefResolver.set_cte also passes None as second argument.
+            self.model.set_cte(self.model.this.unique_id, None)  # type: ignore
+            return self.adapter.Relation.add_ephemeral_prefix(self.model.this.name)
+        return None
+
 
 # This is called by '_context_for', used in 'render_with_context'
 def generate_parser_model_context(

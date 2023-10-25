@@ -1068,6 +1068,7 @@ class UnitTestNode(CompiledNode):
     attached_node: Optional[str] = None
     overrides: Optional[UnitTestOverrides] = None
     config: UnitTestNodeConfig = field(default_factory=UnitTestNodeConfig)
+    this: Optional[ModelNode] = None
 
 
 @dataclass
