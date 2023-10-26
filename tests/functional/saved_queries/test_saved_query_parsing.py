@@ -40,6 +40,11 @@ class TestSavedQueryParsing:
         assert len(saved_query.where.where_filters) == 2
         assert len(saved_query.depends_on.nodes) == 1
         assert saved_query.description == "My SavedQuery Description"
+        assert len(saved_query.exports) == 1
+        assert saved_query.exports[0].name == "my_export"
+        assert saved_query.exports[0].config.alias == "my_export_alias"
+        assert saved_query.exports[0].config.export_as == "table"
+        assert saved_query.exports[0].config.schema_name == "my_export_schema_name"
 
     def test_saved_query_error(self, project):
         error_schema_yml = saved_queries_yml.replace("simple_metric", "metric_not_found")
