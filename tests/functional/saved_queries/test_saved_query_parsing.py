@@ -5,6 +5,7 @@ import pytest
 from dbt.contracts.graph.manifest import Manifest
 from dbt.events.base_types import BaseEvent
 from dbt.tests.util import write_file
+from dbt_semantic_interfaces.type_enums.export_destination_type import ExportDestinationType
 from tests.functional.assertions.test_runner import dbtTestRunner
 from tests.functional.saved_queries.fixtures import saved_queries_yml, saved_query_description
 from tests.functional.semantic_models.fixtures import (
@@ -43,7 +44,7 @@ class TestSavedQueryParsing:
         assert len(saved_query.exports) == 1
         assert saved_query.exports[0].name == "my_export"
         assert saved_query.exports[0].config.alias == "my_export_alias"
-        assert saved_query.exports[0].config.export_as == "table"
+        assert saved_query.exports[0].config.export_as == ExportDestinationType.TABLE
         assert saved_query.exports[0].config.schema_name == "my_export_schema_name"
 
     def test_saved_query_error(self, project):
