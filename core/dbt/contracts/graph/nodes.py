@@ -1746,7 +1746,7 @@ class SemanticModel(GraphNode):
 @dataclass
 class SavedQuery(GraphNode):
     metrics: List[str]
-    group_bys: List[str]
+    group_by: List[str]
     where: Optional[WhereFilterIntersection]
     description: Optional[str] = None
     label: Optional[str] = None
@@ -1765,8 +1765,8 @@ class SavedQuery(GraphNode):
     def same_metrics(self, old: "SavedQuery") -> bool:
         return self.metrics == old.metrics
 
-    def same_group_bys(self, old: "SavedQuery") -> bool:
-        return self.group_bys == old.group_bys
+    def same_group_by(self, old: "SavedQuery") -> bool:
+        return self.group_by == old.group_by
 
     def same_description(self, old: "SavedQuery") -> bool:
         return self.description == old.description
@@ -1791,7 +1791,7 @@ class SavedQuery(GraphNode):
 
         return (
             self.same_metrics(old)
-            and self.same_group_bys(old)
+            and self.same_group_by(old)
             and self.same_description(old)
             and self.same_where(old)
             and self.same_label(old)
