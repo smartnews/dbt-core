@@ -409,7 +409,7 @@ resource_type = click.option(
 
 include_saved_query = click.option(
     "--include-saved-query",
-    envvar="INCLUDE_SAVED_QUERY",
+    envvar="DBT_INCLUDE_SAVED_QUERY",
     help="Include saved queries in the list of resources to be selected for build command",
     is_flag=True,
     hidden=True,
